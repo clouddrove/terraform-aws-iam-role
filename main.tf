@@ -6,7 +6,7 @@
 #              for resources. You can use terraform-labels to implement a strict naming
 #              convention.
 module "labels" {
-  source = "git::https://github.com/clouddrove/terraform-labels.git"
+  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.12.0"
 
   name        = var.name
   application = var.application
@@ -32,7 +32,7 @@ resource "aws_iam_role" "default" {
 # Description : Terraform module to create IAm role policy resource on AWS to attach with Iam Role.
 resource "aws_iam_role_policy" "default" {
   count = var.enabled && var.policy_enabled ? 1 : 0
-  name  = format("%s_policy", module.labels.id)
+  name  = format("%s-policy", module.labels.id)
   role  = aws_iam_role.default.*.id[0]
 
   policy = var.policy

@@ -34,6 +34,5 @@ resource "aws_iam_role_policy" "default" {
   count = var.enabled && var.policy_enabled ? 1 : 0
   name  = format("%s-policy", module.labels.id)
   role  = aws_iam_role.default.*.id[0]
-
   policy = var.policy
 }

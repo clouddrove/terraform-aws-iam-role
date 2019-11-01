@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "iam-role" {
-  source = "./../"
+  source = "git::https://github.com/clouddrove/terraform-aws-iam-role.git?ref=tags/0.12.0"
 
   name               = "iam-role"
   application        = "clouddrove"
@@ -17,8 +17,8 @@ module "iam-role" {
 
 data "aws_iam_policy_document" "default" {
   statement {
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
-
     principals {
       type        = "Service"
       identifiers = ["ec2.amazonaws.com"]
@@ -29,8 +29,11 @@ data "aws_iam_policy_document" "default" {
 data "aws_iam_policy_document" "iam-policy" {
   statement {
     actions = [
-      "ec2:Describe*"
-    ]
+      "ssm:UpdateInstanceInformation",
+      "ssmmessages:CreateControlChannel",
+      "ssmmessages:CreateDataChannel",
+      "ssmmessages:OpenControlChannel",
+      "ssmmessages:OpenDataChannel"    ]
     effect    = "Allow"
     resources = ["*"]
   }

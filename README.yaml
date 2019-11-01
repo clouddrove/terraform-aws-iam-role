@@ -5,7 +5,7 @@
 #
 
 # Name of this project
-name : Terraform AWS Iam Role
+name : Terraform AWS IAM Role
 
 # License of this project
 license: "MIT"

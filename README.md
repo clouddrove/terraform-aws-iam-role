@@ -4,7 +4,7 @@
 
 
 <h1 align="center">
-    Terraform AWS Iam Role
+    Terraform AWS IAM Role
 </h1>
 
 <p align="center" style="font-size: 1.2rem;"> 
@@ -27,10 +27,10 @@
 <a href='https://facebook.com/sharer/sharer.php?u=https://github.com/clouddrove/terraform-aws-iam-role'>
   <img title="Share on Facebook" src="https://user-images.githubusercontent.com/50652676/62817743-4f64cb80-bb59-11e9-90c7-b057252ded50.png" />
 </a>
-<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+AWS+Iam+Role&url=https://github.com/clouddrove/terraform-aws-iam-role'>
+<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+AWS+IAM+Role&url=https://github.com/clouddrove/terraform-aws-iam-role'>
   <img title="Share on LinkedIn" src="https://user-images.githubusercontent.com/50652676/62817742-4e339e80-bb59-11e9-87b9-a1f68cae1049.png" />
 </a>
-<a href='https://twitter.com/intent/tweet/?text=Terraform+AWS+Iam+Role&url=https://github.com/clouddrove/terraform-aws-iam-role'>
+<a href='https://twitter.com/intent/tweet/?text=Terraform+AWS+IAM+Role&url=https://github.com/clouddrove/terraform-aws-iam-role'>
   <img title="Share on Twitter" src="https://user-images.githubusercontent.com/50652676/62817740-4c69db00-bb59-11e9-8a79-3580fbbf6d5c.png" />
 </a>
 
@@ -113,6 +113,34 @@ Here is an example of how you can use this module in your inventory structure:
 
 
 
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| application | Application (e.g. `cd` or `clouddrove`). | string | `` | no |
+| assume_role_policy | Whether to create Iam role. | string | - | yes |
+| attributes | Additional attributes (e.g. `1`). | list | `<list>` | no |
+| delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | string | `-` | no |
+| description | The description of the role. | string | `` | no |
+| enabled | Whether to create Iam role. | bool | `true` | no |
+| environment | Environment (e.g. `prod`, `dev`, `staging`). | string | `` | no |
+| force_detach_policies | The policy that grants an entity permission to assume the role. | bool | `false` | no |
+| label_order | Label order, e.g. `name`,`application`. | list | `<list>` | no |
+| max_session_duration | The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. | number | `3600` | no |
+| name | Name  (e.g. `app` or `cluster`). | string | `` | no |
+| path | The path to the role. | string | `/` | no |
+| permissions_boundary | The ARN of the policy that is used to set the permissions boundary for the role. | string | `` | no |
+| policy_enabled | Whether to Attach Iam policy with role. | bool | `false` | no |
+| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | map | `<map>` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| arn | The Amazon Resource Name (ARN) specifying the role. |
+| name | Name of specifying the role. |
+| tags | A mapping of tags to assign to the resource. |
 
 
 

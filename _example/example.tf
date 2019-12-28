@@ -3,12 +3,12 @@ provider "aws" {
 }
 
 module "iam-role" {
-  source = "git::https://github.com/clouddrove/terraform-aws-iam-role.git?ref=tags/0.12.0"
+  source = "./../"
 
   name               = "iam-role"
   application        = "clouddrove"
   environment        = "test"
-  label_order        = ["application", "name", "name"]
+  label_order        = ["environment", "application", "name"]
 
   assume_role_policy = data.aws_iam_policy_document.default.json
 

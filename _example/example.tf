@@ -5,10 +5,10 @@ provider "aws" {
 module "iam-role" {
   source = "./../"
 
-  name               = "iam-role"
-  application        = "clouddrove"
-  environment        = "test"
-  label_order        = ["environment", "application", "name"]
+  name        = "iam-role"
+  application = "clouddrove"
+  environment = "test"
+  label_order = ["environment", "application", "name"]
 
   assume_role_policy = data.aws_iam_policy_document.default.json
 
@@ -34,7 +34,7 @@ data "aws_iam_policy_document" "iam-policy" {
       "ssmmessages:CreateControlChannel",
       "ssmmessages:CreateDataChannel",
       "ssmmessages:OpenControlChannel",
-      "ssmmessages:OpenDataChannel"    ]
+    "ssmmessages:OpenDataChannel"]
     effect    = "Allow"
     resources = ["*"]
   }

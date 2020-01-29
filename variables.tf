@@ -94,3 +94,9 @@ variable "policy_enabled" {
   default     = false
   description = "Whether to Attach Iam policy with role."
 }
+
+variable "policy_arn" {
+  type        = string
+  default     = ""
+  description = "The ARN of the policy you want to apply."
+}

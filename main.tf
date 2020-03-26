@@ -8,9 +8,11 @@
 module "labels" {
   source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.12.0"
 
+  enabled     = var.enabled
   name        = var.name
   application = var.application
   environment = var.environment
+  managedby   = var.managedby
   label_order = var.label_order
 }
 
@@ -42,7 +44,7 @@ resource "aws_iam_role_policy" "default" {
 resource "aws_iam_policy_attachment" "default" {
   count = var.enabled && var.policy_enabled && var.policy_arn != "" ? 1 : 0
   name  = format("%s-policy", module.labels.id)
-  roles  = [aws_iam_role.default.*.id[0]]
+  roles = [aws_iam_role.default.*.id[0]]
 
   policy_arn = var.policy_arn
 }

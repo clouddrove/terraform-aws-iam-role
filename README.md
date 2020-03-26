@@ -7,7 +7,7 @@
     Terraform AWS IAM Role
 </h1>
 
-<p align="center" style="font-size: 1.2rem;"> 
+<p align="center" style="font-size: 1.2rem;">
     Terraform module to create Iam role resource on AWS.
      </p>
 
@@ -38,7 +38,7 @@
 <hr>
 
 
-We eat, drink, sleep and most importantly love **DevOps**. We are working towards strategies for standardizing architecture while ensuring security for the infrastructure. We are strong believer of the philosophy <b>Bigger problems are always solved by breaking them into smaller manageable problems</b>. Resonating with microservices architecture, it is considered best-practice to run database, cluster, storage in smaller <b>connected yet manageable pieces</b> within the infrastructure. 
+We eat, drink, sleep and most importantly love **DevOps**. We are working towards strategies for standardizing architecture while ensuring security for the infrastructure. We are strong believer of the philosophy <b>Bigger problems are always solved by breaking them into smaller manageable problems</b>. Resonating with microservices architecture, it is considered best-practice to run database, cluster, storage in smaller <b>connected yet manageable pieces</b> within the infrastructure.
 
 This module is basically combination of [Terraform open source](https://www.terraform.io/) and includes automatation tests and examples. It also helps to create and improve your infrastructure with minimalistic code instead of maintaining the whole infrastructure code yourself.
 
@@ -49,7 +49,7 @@ We have [*fifty plus terraform modules*][terraform_modules]. A few of them are c
 
 ## Prerequisites
 
-This module has a few dependencies: 
+This module has a few dependencies:
 
 - [Terraform 0.12](https://learn.hashicorp.com/terraform/getting-started/install.html)
 - [Go](https://golang.org/doc/install)
@@ -72,7 +72,7 @@ This module has a few dependencies:
 Here is an example of how you can use this module in your inventory structure:
 ```hcl
       module "iam-role" {
-      source = "git::https://github.com/clouddrove/terraform-aws-iam-role.git?ref=tags/0.12.1"
+      source = "git::https://github.com/clouddrove/terraform-aws-iam-role.git?ref=tags/0.12.3"
 
       name               = "iam-role"
       application        = "clouddrove"
@@ -127,6 +127,7 @@ Here is an example of how you can use this module in your inventory structure:
 | environment | Environment \(e.g. `prod`, `dev`, `staging`\). | string | `""` | no |
 | force\_detach\_policies | The policy that grants an entity permission to assume the role. | bool | `"false"` | no |
 | label\_order | Label order, e.g. `name`,`application`. | list | `<list>` | no |
+| managedby | ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'. | string | `"anmol@clouddrove.com"` | no |
 | max\_session\_duration | The maximum session duration \(in seconds\) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. | number | `"3600"` | no |
 | name | Name  \(e.g. `app` or `cluster`\). | string | `""` | no |
 | path | The path to the role. | string | `"/"` | no |
@@ -148,7 +149,7 @@ Here is an example of how you can use this module in your inventory structure:
 
 
 ## Testing
-In this module testing is performed with [terratest](https://github.com/gruntwork-io/terratest) and it creates a small piece of infrastructure, matches the output like ARN, ID and Tags name etc and destroy infrastructure in your AWS account. This testing is written in GO, so you need a [GO environment](https://golang.org/doc/install) in your system. 
+In this module testing is performed with [terratest](https://github.com/gruntwork-io/terratest) and it creates a small piece of infrastructure, matches the output like ARN, ID and Tags name etc and destroy infrastructure in your AWS account. This testing is written in GO, so you need a [GO environment](https://golang.org/doc/install) in your system.
 
 You need to run the following command in the testing folder:
 ```hcl
@@ -157,7 +158,7 @@ You need to run the following command in the testing folder:
 
 
 
-## Feedback 
+## Feedback
 If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/clouddrove/terraform-aws-iam-role/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
 
 If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/clouddrove/terraform-aws-iam-role)!

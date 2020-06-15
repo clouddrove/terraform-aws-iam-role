@@ -43,7 +43,7 @@ resource "aws_iam_role_policy" "default" {
 # Description : Terraform module to create IAm role policy resource on AWS to attach with Iam Role.
 resource "aws_iam_role_policy_attachment" "default" {
   count = var.enabled && var.policy_enabled && var.policy_arn != "" ? 1 : 0
-  roles = aws_iam_role.default.*.id[0]
+  role = aws_iam_role.default.*.id[0]
 
   policy_arn = var.policy_arn
 }

@@ -6,10 +6,10 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
-variable "application" {
+variable "repository" {
   type        = string
   default     = ""
-  description = "Application (e.g. `cd` or `clouddrove`)."
+  description = "Repository URL (https://registry.terraform.io/modules/clouddrove/vpc/aws/0.14.0)"
 }
 
 variable "environment" {
@@ -19,13 +19,13 @@ variable "environment" {
 }
 
 variable "label_order" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Label order, e.g. `name`,`application`."
 }
 
 variable "attributes" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Additional attributes (e.g. `1`)."
 }
@@ -37,15 +37,15 @@ variable "delimiter" {
 }
 
 variable "tags" {
-  type        = map
+  type        = map(any)
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
 
 variable "managedby" {
   type        = string
-  default     = "anmol@clouddrove.com"
-  description = "ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'."
+  default     = "hello@clouddrove.com"
+  description = "ManagedBy, eg 'CloudDrove'"
 }
 
 # Module      : Iam Role
@@ -58,6 +58,7 @@ variable "enabled" {
 
 variable "assume_role_policy" {
   description = "Whether to create Iam role."
+  sensitive   = true
 }
 
 variable "force_detach_policies" {
@@ -88,11 +89,13 @@ variable "permissions_boundary" {
   type        = string
   default     = ""
   description = "The ARN of the policy that is used to set the permissions boundary for the role."
+  sensitive   = true
 }
 
 variable "policy" {
   default     = null
   description = "The policy document."
+  sensitive   = true
 }
 
 variable "policy_enabled" {
@@ -105,4 +108,5 @@ variable "policy_arn" {
   type        = string
   default     = ""
   description = "The ARN of the policy you want to apply."
+  sensitive   = true
 }

@@ -6,9 +6,9 @@ module "iam-role" {
   source = "./../"
 
   name        = "iam-role"
-  application = "clouddrove"
   environment = "test"
-  label_order = ["environment", "application", "name"]
+  label_order = ["name", "environment"]
+  repository  = "https://registry.terraform.io/modules/clouddrove/iam-role/aws/0.14.0"
 
   assume_role_policy = data.aws_iam_policy_document.default.json
 

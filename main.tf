@@ -10,7 +10,6 @@ module "labels" {
 
   enabled     = var.enabled
   name        = var.name
-  application = var.application
   environment = var.environment
   managedby   = var.managedby
   label_order = var.label_order

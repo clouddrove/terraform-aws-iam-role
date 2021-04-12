@@ -7,8 +7,7 @@ module "iam-role" {
 
   name        = "iam-role"
   environment = "test"
-  label_order = ["name", "environment"]
-  repository  = "https://registry.terraform.io/modules/clouddrove/iam-role/aws/0.14.0"
+  label_order = ["environment", "name"]
 
   assume_role_policy = data.aws_iam_policy_document.default.json
 
@@ -34,7 +33,7 @@ data "aws_iam_policy_document" "iam-policy" {
       "ssmmessages:CreateControlChannel",
       "ssmmessages:CreateDataChannel",
       "ssmmessages:OpenControlChannel",
-    "ssmmessages:OpenDataChannel"]
+      "ssmmessages:OpenDataChannel"]
     effect    = "Allow"
     resources = ["*"]
   }

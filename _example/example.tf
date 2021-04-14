@@ -6,9 +6,8 @@ module "iam-role" {
   source = "./../"
 
   name        = "iam-role"
-  application = "clouddrove"
   environment = "test"
-  label_order = ["environment", "application", "name"]
+  label_order = ["environment", "name"]
 
   assume_role_policy = data.aws_iam_policy_document.default.json
 

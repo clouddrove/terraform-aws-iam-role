@@ -14,7 +14,7 @@
 <p align="center">
 
 <a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v0.13-green" alt="Terraform">
+  <img src="https://img.shields.io/badge/Terraform-v0.14-green" alt="Terraform">
 </a>
 <a href="LICENSE.md">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="Licence">
@@ -73,7 +73,7 @@ Here is an example of how you can use this module in your inventory structure:
 ```hcl
       module "iam-role" {
       source      = "clouddrove/iam-role/aws"
-      version     = "0.13.0"
+      version     = "0.14.0"
 
       name               = "iam-role"
       application        = "clouddrove"
@@ -119,16 +119,15 @@ Here is an example of how you can use this module in your inventory structure:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| application | Application (e.g. `cd` or `clouddrove`). | `string` | `""` | no |
 | assume\_role\_policy | Whether to create Iam role. | `any` | n/a | yes |
-| attributes | Additional attributes (e.g. `1`). | `list` | `[]` | no |
+| attributes | Additional attributes (e.g. `1`). | `list(any)` | `[]` | no |
 | delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | `string` | `"-"` | no |
 | description | The description of the role. | `string` | `""` | no |
 | enabled | Whether to create Iam role. | `bool` | `true` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | force\_detach\_policies | The policy that grants an entity permission to assume the role. | `bool` | `false` | no |
-| label\_order | Label order, e.g. `name`,`application`. | `list` | `[]` | no |
-| managedby | ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'. | `string` | `"anmol@clouddrove.com"` | no |
+| label\_order | Label order, e.g. `name`,`application`. | `list(any)` | `[]` | no |
+| managedby | ManagedBy, eg 'CloudDrove' | `string` | `"hello@clouddrove.com"` | no |
 | max\_session\_duration | The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. | `number` | `3600` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | path | The path to the role. | `string` | `"/"` | no |
@@ -136,7 +135,8 @@ Here is an example of how you can use this module in your inventory structure:
 | policy | The policy document. | `any` | `null` | no |
 | policy\_arn | The ARN of the policy you want to apply. | `string` | `""` | no |
 | policy\_enabled | Whether to Attach Iam policy with role. | `bool` | `false` | no |
-| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map` | `{}` | no |
+| repository | Repository URL (https://registry.terraform.io/modules/clouddrove/vpc/aws/0.14.0) | `string` | `""` | no |
+| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(any)` | `{}` | no |
 
 ## Outputs
 

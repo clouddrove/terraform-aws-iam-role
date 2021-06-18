@@ -9,7 +9,7 @@ variable "name" {
 variable "repository" {
   type        = string
   default     = ""
-  description = "Repository URL (https://registry.terraform.io/modules/clouddrove/vpc/aws/0.14.0)"
+  description = "https://github.com/clouddrove/terraform-aws-iam-role"
 }
 
 variable "environment" {

@@ -22,7 +22,7 @@ jobs:
           aws-region: us-east-2
 
       - name: 'Terratest'
-        uses: 'clouddrove/github-actions@v6.0'
+        uses: 'clouddrove/github-actions@v7.0'
         with:
           actions_subcommand: 'terratest'
           if: ${{ github.event.label.name == 'terratest' }}
@@ -38,4 +38,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_TERRAFORM }} # required
         if: always()
-

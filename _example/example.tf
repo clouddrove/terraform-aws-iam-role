@@ -5,7 +5,7 @@ provider "aws" {
 module "iam-role" {
   source = "./../"
 
-  name        = "iam-role"
+  name        = "iam"
   environment = "test"
   label_order = ["environment", "name"]
 

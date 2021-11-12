@@ -38,17 +38,17 @@ usage: |-
   Here is an example of how you can use this module in your inventory structure:
   ```hcl
         module "iam-role" {
-        source      = "clouddrove/iam-role/aws"
-        version     = "0.15.0"
+        source              = "clouddrove/iam-role/aws"
+        version             = "0.15.1"
 
-        name               = "iam-role"
-        application        = "clouddrove"
-        environment        = "test"
-        label_order        = ["environment", "name"]
-        assume_role_policy = data.aws_iam_policy_document.default.json
-
-        policy_enabled = true
-        policy         = data.aws_iam_policy_document.iam-policy.json
+        name                = "iam-role"
+        application         = "clouddrove"
+        environment         = "test"
+        label_order         = ["environment", "name"]
+        assume_role_policy  = data.aws_iam_policy_document.default.json
+        managed_policy_arns = 
+        policy_enabled      = true
+        policy              = data.aws_iam_policy_document.iam-policy.json
       }
 
         data "aws_iam_policy_document" "default" {

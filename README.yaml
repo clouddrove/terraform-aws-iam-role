@@ -39,7 +39,7 @@ usage: |-
   ```hcl
         module "iam-role" {
         source              = "clouddrove/iam-role/aws"
-        version             = "0.15.0"
+        version             = "0.15.1"
 
         name                = "iam-role"
         application         = "clouddrove"

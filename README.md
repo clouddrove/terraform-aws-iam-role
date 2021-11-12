@@ -51,7 +51,7 @@ We have [*fifty plus terraform modules*][terraform_modules]. A few of them are c
 
 This module has a few dependencies: 
 
-- [Terraform 0.13](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Terraform 0.15](https://learn.hashicorp.com/terraform/getting-started/install.html)
 - [Go](https://golang.org/doc/install)
 - [github.com/stretchr/testify/assert](https://github.com/stretchr/testify)
 - [github.com/gruntwork-io/terratest/modules/terraform](https://github.com/gruntwork-io/terratest)
@@ -72,17 +72,17 @@ This module has a few dependencies:
 Here is an example of how you can use this module in your inventory structure:
 ```hcl
       module "iam-role" {
-      source      = "clouddrove/iam-role/aws"
-      version     = "0.15.0"
+      source              = "clouddrove/iam-role/aws"
+      version             = "0.15.1"
 
-      name               = "iam-role"
-      application        = "clouddrove"
-      environment        = "test"
-      label_order        = ["environment", "name"]
-      assume_role_policy = data.aws_iam_policy_document.default.json
-
-      policy_enabled = true
-      policy         = data.aws_iam_policy_document.iam-policy.json
+      name                = "iam-role"
+      application         = "clouddrove"
+      environment         = "test"
+      label_order         = ["environment", "name"]
+      assume_role_policy  = data.aws_iam_policy_document.default.json
+      managed_policy_arns = 
+      policy_enabled      = true
+      policy              = data.aws_iam_policy_document.iam-policy.json
     }
 
       data "aws_iam_policy_document" "default" {
@@ -127,6 +127,7 @@ Here is an example of how you can use this module in your inventory structure:
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | force\_detach\_policies | The policy that grants an entity permission to assume the role. | `bool` | `false` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list(any)` | `[]` | no |
+| managed\_policy\_arns | Set of exclusive IAM managed policy ARNs to attach to the IAM role | `list(any)` | `[]` | no |
 | managedby | ManagedBy, eg 'CloudDrove' | `string` | `"hello@clouddrove.com"` | no |
 | max\_session\_duration | The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. | `number` | `3600` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |

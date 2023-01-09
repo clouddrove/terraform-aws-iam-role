@@ -14,3 +14,13 @@ output "name" {
   value       = join("", aws_iam_role.default.*.name)
   description = "Name of specifying the role."
 }
+
+output "policy" {
+  value       = join("", aws_iam_role_policy.default.*.policy)
+  description = "The policy document attached to the role."
+}
+
+output "role" {
+  value       = join("", aws_iam_role_policy.default.*.role)
+  description = "The name of the role associated with the policy."
+}

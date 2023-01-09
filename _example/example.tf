@@ -6,7 +6,7 @@ module "iam-role" {
   source = "./../"
 
   name        = "iam"
-  environment = "uddan"
+  environment = "test"
   label_order = ["environment", "name"]
 
   assume_role_policy = data.aws_iam_policy_document.default.json

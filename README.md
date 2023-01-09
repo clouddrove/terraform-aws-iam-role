@@ -79,7 +79,7 @@ Here is an example of how you can use this module in your inventory structure:
 ```hcl
       module "iam-role" {
       source              = "clouddrove/iam-role/aws"
-      version             = "0.15.1"
+      version             = "1.3.0"
 
       name                = "iam-role"
       application         = "clouddrove"
@@ -151,6 +151,8 @@ Here is an example of how you can use this module in your inventory structure:
 |------|-------------|
 | arn | The Amazon Resource Name (ARN) specifying the role. |
 | name | Name of specifying the role. |
+| policy | The policy document attached to the role. |
+| role | The name of the role associated with the policy. |
 | tags | A mapping of tags to assign to the resource. |
 
 

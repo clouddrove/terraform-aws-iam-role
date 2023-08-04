@@ -28,6 +28,10 @@ badges:
     image: "https://github.com/clouddrove/terraform-aws-iam-role/actions/workflows/terraform.yml/badge.svg"
     url: "https://github.com/clouddrove/terraform-aws-iam-role/actions/workflows/terraform.yml"
 
+prerequesties:
+  - name: Terraform 1.5.4
+    url: https://learn.hashicorp.com/terraform/getting-started/install.html
+
 #  description of this project
 description: |-
   Terraform module to create Iam role resource on AWS.

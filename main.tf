@@ -1,10 +1,9 @@
-## Managed By : CloudDrove
-## Copyright @ CloudDrove. All Right Reserved.
+# Managed By : CloudDrove 
+# Copyright @ CloudDrove. All Right Reserved.
 
-#Module      : label
-#Description : This terraform module is designed to generate consistent label names and tags
-#              for resources. You can use terraform-labels to implement a strict naming
-#              convention.
+##----------------------------------------------------------------------------- 
+## Labels module callled that will be used for naming and tags.   
+##-----------------------------------------------------------------------------
 module "labels" {
   source  = "clouddrove/labels/aws"
   version = "1.3.0"
@@ -17,8 +16,9 @@ module "labels" {
   label_order = var.label_order
 }
 
-# Module      : Iam Role
-# Description : Terraform module to create IAm role resource on AWS.
+##----------------------------------------------------------------------------- 
+## Below resource will deploy IAM role in AWS environment.   
+##-----------------------------------------------------------------------------
 resource "aws_iam_role" "default" {
   count                 = var.enabled ? 1 : 0
   name                  = module.labels.id
@@ -32,8 +32,9 @@ resource "aws_iam_role" "default" {
   tags                  = module.labels.tags
 }
 
-# Module      : Iam Role Policy
-# Description : Terraform module to create IAm role policy resource on AWS to attach with Iam Role.
+##----------------------------------------------------------------------------- 
+## Below resource will deploy IAM policy and attach it to above created IAM role.   
+##-----------------------------------------------------------------------------
 resource "aws_iam_role_policy" "default" {
   count  = var.enabled && var.policy_enabled && var.policy_arn == "" ? 1 : 0
   name   = format("%s-policy", module.labels.id)
@@ -41,11 +42,11 @@ resource "aws_iam_role_policy" "default" {
   policy = var.policy
 }
 
-# Module      : Iam Role Policy
-# Description : Terraform module to create IAm role policy resource on AWS to attach with Iam Role.
+##----------------------------------------------------------------------------- 
+## Below resource will attach IAM policy to above created IAM role.  
+##-----------------------------------------------------------------------------
 resource "aws_iam_role_policy_attachment" "default" {
-  count = var.enabled && var.policy_enabled && var.policy_arn != "" ? 1 : 0
-  role  = aws_iam_role.default.*.id[0]
-
+  count      = var.enabled && var.policy_enabled && var.policy_arn != "" ? 1 : 0
+  role       = aws_iam_role.default.*.id[0]
   policy_arn = var.policy_arn
 }

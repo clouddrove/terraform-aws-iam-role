@@ -56,11 +56,7 @@ We have [*fifty plus terraform modules*][terraform_modules]. A few of them are c
 ## Prerequisites
 
 This module has a few dependencies: 
-
-- [Terraform 1.x.x](https://learn.hashicorp.com/terraform/getting-started/install.html)
-- [Go](https://golang.org/doc/install)
-- [github.com/stretchr/testify/assert](https://github.com/stretchr/testify)
-- [github.com/gruntwork-io/terratest/modules/terraform](https://github.com/gruntwork-io/terratest)
+- [Terraform 1.5.4](https://learn.hashicorp.com/terraform/getting-started/install.html)
 
 
 
@@ -126,13 +122,11 @@ Here is an example of how you can use this module in your inventory structure:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | assume\_role\_policy | Whether to create Iam role. | `any` | n/a | yes |
-| attributes | Additional attributes (e.g. `1`). | `list(any)` | `[]` | no |
-| delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | `string` | `"-"` | no |
 | description | The description of the role. | `string` | `""` | no |
 | enabled | Whether to create Iam role. | `bool` | `true` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | force\_detach\_policies | The policy that grants an entity permission to assume the role. | `bool` | `false` | no |
-| label\_order | Label order, e.g. `name`,`application`. | `list(any)` | `[]` | no |
+| label\_order | Label order, e.g. `name`,`application`. | `list(any)` | <pre>[<br>  "name",<br>  "environment"<br>]</pre> | no |
 | managed\_policy\_arns | Set of exclusive IAM managed policy ARNs to attach to the IAM role | `list(any)` | `[]` | no |
 | managedby | ManagedBy, eg 'CloudDrove' | `string` | `"hello@clouddrove.com"` | no |
 | max\_session\_duration | The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. | `number` | `3600` | no |
@@ -143,7 +137,6 @@ Here is an example of how you can use this module in your inventory structure:
 | policy\_arn | The ARN of the policy you want to apply. | `string` | `""` | no |
 | policy\_enabled | Whether to Attach Iam policy with role. | `bool` | `false` | no |
 | repository | https://github.com/clouddrove/terraform-aws-iam-role | `string` | `""` | no |
-| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(any)` | `{}` | no |
 
 ## Outputs
 

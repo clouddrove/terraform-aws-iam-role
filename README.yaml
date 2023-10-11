@@ -15,21 +15,18 @@ github_repo: clouddrove/terraform-aws-iam-role
 
 # Badges to display
 badges:
-  - name: "Terraform"
-    image: "https://img.shields.io/badge/Terraform-v1.1.7-green"
-    url: "https://www.terraform.io"
-  - name: "Licence"
-    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
-    url: "LICENSE.md"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/clouddrove/terraform-aws-iam-role.svg"
+    url: "https://github.com/clouddrove/terraform-aws-iam-role/releases/latest"
   - name: "tfsec"
     image: "https://github.com/clouddrove/terraform-aws-iam-role/actions/workflows/tfsec.yml/badge.svg"
     url: "https://github.com/clouddrove/terraform-aws-iam-role/actions/workflows/tfsec.yml"
-  - name: "static-checks"
-    image: "https://github.com/clouddrove/terraform-aws-iam-role/actions/workflows/terraform.yml/badge.svg"
-    url: "https://github.com/clouddrove/terraform-aws-iam-role/actions/workflows/terraform.yml"
+  - name: "Licence"
+    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
+    url: "LICENSE.md"
 
 prerequesties:
-  - name: Terraform 1.5.4
+  - name: Terraform 1.5.6
     url: https://learn.hashicorp.com/terraform/getting-started/install.html
 
 #  description of this project
@@ -47,21 +44,19 @@ usage: |-
   ### Simple example
   Here is an example of how you can use this module in your inventory structure:
   ```hcl
-        module "iam-role" {
+      module "iam-role" {
         source              = "clouddrove/iam-role/aws"
-        version             = "1.3.0"
-
-        name                = "iam-role"
-        application         = "clouddrove"
-        environment         = "test"
-        label_order         = ["environment", "name"]
-        assume_role_policy  = data.aws_iam_policy_document.default.json
-        managed_policy_arns = 
-        policy_enabled      = true
-        policy              = data.aws_iam_policy_document.iam-policy.json
+        name               = local.name
+        environment        = local.environment
+        assume_role_policy = data.aws_iam_policy_document.default.json
+        policy_enabled     = true
+        policy             = data.aws_iam_policy_document.iam-policy.json
       }
 
-        data "aws_iam_policy_document" "default" {
+      ##-----------------------------------------------------------------------------
+      ## Data block to create IAM policy.
+      ##-----------------------------------------------------------------------------
+      data "aws_iam_policy_document" "default" {
         statement {
         effect  = "Allow"
         actions = ["sts:AssumeRole"]
@@ -72,14 +67,17 @@ usage: |-
         }
       }
 
-        data "aws_iam_policy_document" "iam-policy" {
+      ##-----------------------------------------------------------------------------
+      ## Data block to create IAM policy.
+      ##-----------------------------------------------------------------------------
+      data "aws_iam_policy_document" "iam-policy" {
         statement {
         actions = [
         "ssm:UpdateInstanceInformation",
         "ssmmessages:CreateControlChannel",
         "ssmmessages:CreateDataChannel",
         "ssmmessages:OpenControlChannel",
-        "ssmmessages:OpenDataChannel"    ]
+        "ssmmessages:OpenDataChannel"]
         effect    = "Allow"
         resources = ["*"]
         }

@@ -1,10 +1,10 @@
 output "name" {
-  value       = module.iam-role.*.name
+  value       = module.iam-role.name
   description = "Name of the role."
 }
 
 output "arn" {
-  value       = module.iam-role.*.arn
+  value       = module.iam-role.arn
   description = "The Amazon Resource Name (ARN) specifying the role."
 }
 

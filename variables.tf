@@ -39,8 +39,10 @@ variable "enabled" {
 }
 
 variable "assume_role_policy" {
-  description = "Whether to create Iam role."
+  type        = string
+  default     = null
   sensitive   = true
+  description = "Whether to create Iam role."
 }
 
 variable "managed_policy_arns" {
@@ -80,6 +82,7 @@ variable "permissions_boundary" {
 }
 
 variable "policy" {
+  type        = string
   default     = null
   description = "The policy document."
   sensitive   = true

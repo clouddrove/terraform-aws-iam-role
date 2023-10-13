@@ -1,7 +1,4 @@
-# Managed By : CloudDrove 
-# Copyright @ CloudDrove. All Right Reserved.
-
-##----------------------------------------------------------------------------- 
+##-----------------------------------------------------------------------------
 ## Labels module callled that will be used for naming and tags.   
 ##-----------------------------------------------------------------------------
 module "labels" {
@@ -38,7 +35,7 @@ resource "aws_iam_role" "default" {
 resource "aws_iam_role_policy" "default" {
   count  = var.enabled && var.policy_enabled && var.policy_arn == "" ? 1 : 0
   name   = format("%s-policy", module.labels.id)
-  role   = aws_iam_role.default.*.id[0]
+  role   = aws_iam_role.default[0].id
   policy = var.policy
 }
 
@@ -47,6 +44,6 @@ resource "aws_iam_role_policy" "default" {
 ##-----------------------------------------------------------------------------
 resource "aws_iam_role_policy_attachment" "default" {
   count      = var.enabled && var.policy_enabled && var.policy_arn != "" ? 1 : 0
-  role       = aws_iam_role.default.*.id[0]
+  role       = aws_iam_role.default[0].id
   policy_arn = var.policy_arn
 }

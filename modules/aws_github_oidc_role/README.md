@@ -12,7 +12,7 @@ Before using this configuration, make sure you have the following prerequisites:
 ## Example
 ```bash
   module "aws_oidc_role" {
-  source = "git@github.com:clouddrove/terraform-aws-control-tower?ref=master"
+  source = ""clouddrove/iam-role/aws//modules/aws_github_oidc_role""
 
   # Module input variables
   iam_github_oidc_role_enable    = true

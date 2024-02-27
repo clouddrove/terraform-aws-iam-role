@@ -1,3 +1,6 @@
+#Module      : LABEL
+#Description : Terraform label module variables
+
 variable "name" {
   type        = string
   description = "Name for tags"
@@ -20,6 +23,13 @@ variable "managedby" {
   description = "Managed by for tags"
 }
 
+variable "label_order" {
+  type        = list(any)
+  default     = ["name", "environment"]
+  description = "Label order, e.g. `name`,`application`."
+}
+
+# ------------------------OIDC variables ----------------------
 variable "provider_url" {
   type        = string
   description = "URL for the OIDC provider"
@@ -51,3 +61,4 @@ variable "policy_arns" {
   type        = list(string)
   description = "A list of ARNs of policies to attach to the IAM role."
 }
+

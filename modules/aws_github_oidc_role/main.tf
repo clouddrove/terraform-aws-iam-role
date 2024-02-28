@@ -29,7 +29,7 @@ resource "aws_iam_openid_connect_provider" "github" {
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = [data.tls_certificate.github[0].certificates[0].sha1_fingerprint]
   url             = var.provider_url
-  tags            = local.tags
+  tags            = module.labels.tags
 }
 
 # Include the role resource and attachment here
@@ -37,7 +37,7 @@ resource "aws_iam_openid_connect_provider" "github" {
 resource "aws_iam_role" "github" {
   count = var.enable ? 1 : 0
   name  = var.role_name
-  tags  = local.tags
+  tags  = module.labels.tags
  assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [

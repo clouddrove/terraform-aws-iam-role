@@ -20,6 +20,5 @@ module "aws_github_oidc_role" {
   provider_url                = "https://token.actions.githubusercontent.com"
   policy_arns                 = ["arn:aws:iam::aws:policy/AdministratorAccess"]
   
-  # Other module configurations...
 }
 

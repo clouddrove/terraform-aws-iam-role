@@ -13,8 +13,8 @@ module "aws_github_oidc_role" {
   enable                      = true
   environment                 = local.environment
   name                        = local.name                       
-  repository                  = "terraform-aws-control-tower"        
-  oidc_github_repos           = ["clouddrove/terraform-aws-control-tower"] 
+  repository                  = "terraform-aws-iam-role"        
+  oidc_github_repos           = ["clouddrove/terraform-aws-iam-role"] 
   role_name                   = "github-oidc-terraform-role"
   oidc_provider_exists        = true
   provider_url                = "https://token.actions.githubusercontent.com"

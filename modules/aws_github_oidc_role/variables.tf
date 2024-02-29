@@ -8,7 +8,7 @@ variable "name" {
 
 variable "repository" {
   type        = string
-  default     = "https://github.com/clouddrove/terraform-aws-control-tower.git"
+  default     = "https://github.com/clouddrove/terraform-aws-iam-role.git"
   description = "Repository name for tags"
 }
 

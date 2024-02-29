@@ -29,10 +29,12 @@ variable "label_order" {
   description = "Label order, e.g. `name`,`application`."
 }
 
-# ------------------------OIDC variables ----------------------
+#Module      : OIDC
+#Description : Terraform github oidc module variables
+
 variable "provider_url" {
   type        = string
-  description = "URL for the OIDC provider"
+  description = "The URL of the identity provider for the OIDC"
 }
 
 variable "oidc_github_repos" {
@@ -59,6 +61,6 @@ variable "oidc_provider_exists" {
 
 variable "policy_arns" {
   type        = list(string)
-  description = "A list of ARNs of policies to attach to the IAM role."
+  description = "A list of policies/permissions to attach to the IAM role."
 }
 

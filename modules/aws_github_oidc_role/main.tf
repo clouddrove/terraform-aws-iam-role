@@ -14,15 +14,27 @@ module "labels" {
   label_order = var.label_order
 }
 
+##----------------------------------------------------------------------------- 
+## Data block to tls certificate.  
+##-----------------------------------------------------------------------------
+
 data "tls_certificate" "github" {
   count = var.enable ? 1 : 0
   url   = var.provider_url
 }
 
+##----------------------------------------------------------------------------- 
+## Data block for openid connect provider
+##-----------------------------------------------------------------------------
+
 data "aws_iam_openid_connect_provider" "github" {
   count = var.enable && var.oidc_provider_exists ? 1 : 0
   url   = var.provider_url
 }
+
+##-----------------------------------------------------------------------------
+## Include iam openid connect provider resource here   
+##-----------------------------------------------------------------------------
 
 resource "aws_iam_openid_connect_provider" "github" {
   count           = var.enable && !var.oidc_provider_exists ? 1 : 0
@@ -32,7 +44,9 @@ resource "aws_iam_openid_connect_provider" "github" {
   tags            = module.labels.tags
 }
 
-# Include the role resource and attachment here
+##-----------------------------------------------------------------------------
+## Include the role resource and attachment here
+##-----------------------------------------------------------------------------
 
 resource "aws_iam_role" "github" {
   count = var.enable ? 1 : 0
@@ -62,6 +76,10 @@ resource "aws_iam_role" "github" {
     ]
   })
 }
+
+##-----------------------------------------------------------------------------
+## Include the iam role policy resource attachment here
+##-----------------------------------------------------------------------------
 
 resource "aws_iam_role_policy_attachment" "github" {
   count      = var.enable ? length(var.policy_arns) : 0

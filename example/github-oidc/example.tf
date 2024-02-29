@@ -7,6 +7,10 @@ locals {
   environment = "test"
 }
 
+##----------------------------------------------------------------------------- 
+## GitHub OIDC role module call.   
+##-----------------------------------------------------------------------------
+
 module "aws_github_oidc_role" { 
   source = "../../modules/aws_github_oidc_role"
 

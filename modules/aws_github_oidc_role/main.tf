@@ -52,7 +52,7 @@ resource "aws_iam_role" "github" {
   count = var.enable ? 1 : 0
   name  = var.role_name
   tags  = module.labels.tags
- assume_role_policy = jsonencode({
+  assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {

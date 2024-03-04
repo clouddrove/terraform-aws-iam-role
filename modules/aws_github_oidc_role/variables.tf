@@ -37,6 +37,12 @@ variable "provider_url" {
   description = "The URL of the identity provider for the OIDC"
 }
 
+variable "custom_assume_role_policy" {
+  type        = string
+  default     = ""
+  description = "The URL of the identity provider for the OIDC"
+}
+
 variable "oidc_github_repos" {
   type        = list(string)
   description = "GitHub repository names for access"

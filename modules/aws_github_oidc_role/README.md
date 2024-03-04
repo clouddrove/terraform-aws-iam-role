@@ -24,6 +24,8 @@ Before using this configuration, make sure you have the following prerequisites:
   repository                     = "repository-name"      #For taggs
   environment                    = "control-tower"        #Environment for tag
   managedby                      = "hello@clouddrove.com"
+  custom_assume_role_policy      = ""                     # If you have your own policy add this variable
+
 }
 ```
 

@@ -55,7 +55,7 @@ resource "aws_iam_role" "github" {
   assume_role_policy = var.custom_assume_role_policy != "" ? var.custom_assume_role_policy : jsonencode({
     Version = "2012-10-17",
     Statement = [
-      { 
+      {
         Effect = "Allow",
         Principal = {
           Federated = var.oidc_provider_exists ? data.aws_iam_openid_connect_provider.github[0].arn : aws_iam_openid_connect_provider.github[0].arn
@@ -72,11 +72,11 @@ resource "aws_iam_role" "github" {
             ]
           }
         }
-        
+
       }
     ]
   })
- }
+}
 
 ##-----------------------------------------------------------------------------
 ## Include the iam role policy resource attachment here

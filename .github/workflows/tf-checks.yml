@@ -10,7 +10,7 @@ jobs:
     with:
       working_directory: './examples/complete/'
   oidc-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.1
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.2
     with:
       working_directory: './examples/github-oidc/'
 

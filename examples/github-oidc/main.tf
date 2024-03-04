@@ -14,7 +14,6 @@ locals {
 module "aws_github_oidc_role" {
   source = "../../modules/aws_github_oidc_role"
 
-  enable               = true
   environment          = local.environment
   name                 = local.name
   repository           = "terraform-aws-iam-role"

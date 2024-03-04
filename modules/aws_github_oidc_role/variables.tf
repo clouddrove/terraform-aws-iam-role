@@ -53,12 +53,6 @@ variable "role_name" {
   description = "Name of the AWS IAM Role to create"
 }
 
-variable "enable" {
-  type        = bool
-  default     = true
-  description = "Create aws oidc GitHUb role or not"
-}
-
 variable "oidc_provider_exists" {
   type        = bool
   default     = true

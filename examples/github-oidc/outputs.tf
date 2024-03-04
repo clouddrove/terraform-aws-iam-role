@@ -1,14 +1,13 @@
-output "name" {
-  value       = module.aws_github_oidc_role
-  description = "Name of the role."
-}
+# ################################################################################
+# # GitHub OIDC Provider
+# ################################################################################
 
-output "arn" {
-  value       = module.aws_github_oidc_role
-  description = "The Amazon Resource Name (ARN) specifying the role."
+output "provider_arn" {
+  description = "The ARN assigned by AWS for this provider"
+  value       = module.aws_github_oidc_role.arn
 }
 
 output "tags" {
-  value       = module.aws_github_oidc_role
-  description = "A mapping of tags to assign to the resource."
+  description = "The gets tags provided for role"
+  value       = module.aws_github_oidc_role.tags
 }

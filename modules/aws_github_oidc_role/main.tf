@@ -19,8 +19,7 @@ module "labels" {
 ##-----------------------------------------------------------------------------
 
 data "tls_certificate" "github" {
-  count = var.enable ? 1 : 0
-  url   = var.provider_url
+  url = var.provider_url
 }
 
 ##----------------------------------------------------------------------------- 
@@ -28,7 +27,7 @@ data "tls_certificate" "github" {
 ##-----------------------------------------------------------------------------
 
 data "aws_iam_openid_connect_provider" "github" {
-  count = var.enable && var.oidc_provider_exists ? 1 : 0
+  count = var.oidc_provider_exists ? 1 : 0
   url   = var.provider_url
 }
 
@@ -36,10 +35,11 @@ data "aws_iam_openid_connect_provider" "github" {
 ## Include iam openid connect provider resource here   
 ##-----------------------------------------------------------------------------
 
+
 resource "aws_iam_openid_connect_provider" "github" {
-  count           = var.enable && !var.oidc_provider_exists ? 1 : 0
+  count           = var.oidc_provider_exists ? 0 : 1
   client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [data.tls_certificate.github[0].certificates[0].sha1_fingerprint]
+  thumbprint_list = var.oidc_provider_exists ? [] : [data.tls_certificate.github.certificates[0].sha1_fingerprint]
   url             = var.provider_url
   tags            = module.labels.tags
 }
@@ -49,9 +49,8 @@ resource "aws_iam_openid_connect_provider" "github" {
 ##-----------------------------------------------------------------------------
 
 resource "aws_iam_role" "github" {
-  count = var.enable ? 1 : 0
-  name  = var.role_name
-  tags  = module.labels.tags
+  name = var.role_name
+  tags = module.labels.tags
   assume_role_policy = var.custom_assume_role_policy != "" ? var.custom_assume_role_policy : jsonencode({
     Version = "2012-10-17",
     Statement = [
@@ -83,7 +82,7 @@ resource "aws_iam_role" "github" {
 ##-----------------------------------------------------------------------------
 
 resource "aws_iam_role_policy_attachment" "github" {
-  count      = var.enable ? length(var.policy_arns) : 0
-  role       = aws_iam_role.github[0].name
+  count      = length(var.policy_arns)
+  role       = aws_iam_role.github.name
   policy_arn = var.policy_arns[count.index]
 }

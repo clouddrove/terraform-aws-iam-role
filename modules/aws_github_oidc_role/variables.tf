@@ -40,7 +40,7 @@ variable "provider_url" {
 variable "custom_assume_role_policy" {
   type        = string
   default     = ""
-  description = "The URL of the identity provider for the OIDC"
+  description = "The custom json trusted_policy for attached to the role"
 }
 
 variable "oidc_github_repos" {

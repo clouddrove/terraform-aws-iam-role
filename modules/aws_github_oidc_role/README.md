@@ -15,7 +15,6 @@ Before using this configuration, make sure you have the following prerequisites:
   source = "clouddrove/iam-role/aws//modules/aws_github_oidc_role"        
 
   # Module input variables
-  iam_github_oidc_role_enable    = true
   provider_url                   = "https://token.actions.githubusercontent.com"
   oidc_github_repos              = ["username/reponame"]
   role_name                      = "GitHub-Deploy-Role"
@@ -51,7 +50,6 @@ Before using this configuration, make sure you have the following prerequisites:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| enable | Whether to create AWS oidc GitHUb role or not. | `bool` | false | yes |
 | oidc_provider_exists | Mention oidc provider exist or not in true or false. | `bool` | false | yes |
 | role_name  | Role name . | `string` | `GitHub-Deploy-Role` | yes |
 | oidc_github_repos   | GitHub repository to set IAM Role conditions . | `list(string)` | `""` | yes |

@@ -19,10 +19,9 @@ module "aws_github_oidc_role" {
   name                 = local.name
   repository           = "terraform-aws-iam-role"
   oidc_github_repos    = ["clouddrove/terraform-aws-iam-role"]
-  role_name            = "github-oidc-terraform-role"
+  role_name            = "github-oidc-terraform-role2"
   oidc_provider_exists = true
   provider_url         = "https://token.actions.githubusercontent.com"
   policy_arns          = ["arn:aws:iam::aws:policy/AdministratorAccess"]
-
 }
 

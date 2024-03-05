@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2024-03-05
+### :sparkles: New Features
+- [`dda0a5b`](https://github.com/clouddrove/terraform-aws-iam-role/commit/dda0a5b2ca09c9ea80cdb190c184a99220a448a8) - updated changelog.yml name and file *(commit by [@vibutigoyal](https://github.com/vibutigoyal))*
+- [`8a11f30`](https://github.com/clouddrove/terraform-aws-iam-role/commit/8a11f30fb45dacc419e7cf2e238c1d5c526153a8) - add deepsource & added assignees,reviewer in dependabot *(commit by [@Tanveer143s](https://github.com/Tanveer143s))*
+- [`199877b`](https://github.com/clouddrove/terraform-aws-iam-role/commit/199877bd41e544140abd91064292db83f4a586c1) - Add automerge github shared workflow *(PR [#26](https://github.com/clouddrove/terraform-aws-iam-role/pull/26) by [@vaibhav7797](https://github.com/vaibhav7797))*
+- [`cabe766`](https://github.com/clouddrove/terraform-aws-iam-role/commit/cabe766f37c82ed5e18e36d378f04ed398932cf9) - update tf.checks step name and tf and aws version *(PR [#28](https://github.com/clouddrove/terraform-aws-iam-role/pull/28) by [@theprashantyadav](https://github.com/theprashantyadav))*
+- [`f1b4e86`](https://github.com/clouddrove/terraform-aws-iam-role/commit/f1b4e8639dcd1fb971389be33f5cd34657c6f6f4) - :rocket: Created GitHub OIDC role module *(PR [#33](https://github.com/clouddrove/terraform-aws-iam-role/pull/33) by [@Tanveer143s](https://github.com/Tanveer143s))*
+
+### :bug: Bug Fixes
+- [`d6b2727`](https://github.com/clouddrove/terraform-aws-iam-role/commit/d6b2727d3022a60e0cc90093e9d16af820b91032) - Added commecnts and update example folder heirarchy *(PR [#19](https://github.com/clouddrove/terraform-aws-iam-role/pull/19) by [@13archit](https://github.com/13archit))*
+- [`163ddce`](https://github.com/clouddrove/terraform-aws-iam-role/commit/163ddce7019f03481057036022f4323e7c082c76) - update github action and readme and terraform version *(PR [#20](https://github.com/clouddrove/terraform-aws-iam-role/pull/20) by [@mamrajyadav](https://github.com/mamrajyadav))*
+- [`878d331`](https://github.com/clouddrove/terraform-aws-iam-role/commit/878d33170c29a626cc7fa3d3cc569db3d451abc1) - update tf and aws latest version *(PR [#21](https://github.com/clouddrove/terraform-aws-iam-role/pull/21) by [@mamrajyadav](https://github.com/mamrajyadav))*
+
+
 ## [1.3.0] - 2023-01-09
 ### :bug: Bug Fixes
 - [`bc3c5de`](https://github.com/clouddrove/terraform-aws-iam-role/commit/bc3c5dead1bd6f62eabe9ebb50a18d527b62a0c7) - update workflows.
@@ -77,3 +91,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.15.1]: https://github.com/clouddrove/terraform-aws-iam-role/compare/0.15.0...0.15.1
 [1.0.1]: https://github.com/clouddrove/terraform-aws-iam-role/compare/0.15.1...1.0.1
 [1.3.0]: https://github.com/clouddrove/terraform-aws-iam-role/compare/1.0.1...1.3.0
+[1.3.1]: https://github.com/clouddrove/terraform-aws-iam-role/compare/1.3.0...1.3.1

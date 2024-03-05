@@ -50,3 +50,34 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_TERRAFORM }} # required
         if: always()
+
+
+ # Create README for each Submodules
+  readme-create-addon:
+    name: 'Addon readme-create'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Updating GitHub Token
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB }}
+        run: echo "GH_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
+
+      - name: checkout
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+          token: ${{ env.GH_TOKEN }}
+
+      - name: Generate TF Docs
+        uses: terraform-docs/gh-actions@v1.0.0
+        with:
+          working-dir: modules/aws_github_oidc_role
+          git-push: true
+          template: |-
+            <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+            {{ .Content }}
+            <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+          git-push-user-name: "clouddrove-ci"
+          git-push-user-email: 84795582+clouddrove-ci@users.noreply.github.com
+          git-commit-message: "readme: Update IAM's readme"

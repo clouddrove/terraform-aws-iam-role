@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  name        = "role"
+  name        = "role-test"
   environment = "test"
 }
 
@@ -48,3 +48,4 @@ data "aws_iam_policy_document" "iam-policy" {
     resources = ["*"]
   }
 }
+

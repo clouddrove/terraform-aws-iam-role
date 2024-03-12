@@ -53,7 +53,7 @@ jobs:
 
  # Create README for each Submodules
   readme-create-modules:
-    name: 'Addon readme-create'
+    name: 'modules readme-create'
     runs-on: ubuntu-latest
     steps:
       - name: Updating GitHub Token

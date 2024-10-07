@@ -12,7 +12,7 @@ Before using this configuration, make sure you have the following prerequisites:
 ## Example
 ```bash
   module "aws_oidc_role" {
-  source = "clouddrove/iam-role/aws//modules/aws_github_oidc_role"        
+  source = "clouddrove/iam-role/aws//modules/aws_github_oidc_role"
 
   # Module input variables
   provider_url                   = "https://token.actions.githubusercontent.com"
@@ -64,5 +64,5 @@ Before using this configuration, make sure you have the following prerequisites:
 1. To destroy the created resources, run:
    ```bash
    terraform destroy
-   
+
 2. Confirm the destruction by typing yes when prompted.

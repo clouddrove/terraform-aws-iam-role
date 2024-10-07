@@ -13,4 +13,3 @@ jobs:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './examples/github-oidc/'
-

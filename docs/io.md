@@ -28,4 +28,3 @@
 | policy | The policy document attached to the role. |
 | role | The name of the role associated with the policy. |
 | tags | A mapping of tags to assign to the resource. |
-

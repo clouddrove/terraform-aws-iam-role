@@ -7,8 +7,8 @@ locals {
   environment = "test"
 }
 
-##----------------------------------------------------------------------------- 
-## GitHub OIDC role module call.   
+##-----------------------------------------------------------------------------
+## GitHub OIDC role module call.
 ##-----------------------------------------------------------------------------
 
 module "aws_github_oidc_role" {
@@ -23,4 +23,3 @@ module "aws_github_oidc_role" {
   provider_url         = "https://token.actions.githubusercontent.com"
   policy_arns          = ["arn:aws:iam::aws:policy/AdministratorAccess"]
 }
-

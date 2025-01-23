@@ -11,16 +11,16 @@ output "tags" {
 }
 
 output "name" {
-  value       = aws_iam_role.default[0].name
+  value = length(aws_iam_role.default) > 0 ? aws_iam_role.default[0].name : null
   description = "Name of specifying the role."
 }
 
 output "policy" {
-  value       = aws_iam_role_policy.default[0].policy
+  value = length(aws_iam_role_policy.default) > 0 ? aws_iam_role_policy.default[0].policy : null
   description = "The policy document attached to the role."
 }
 
 output "role" {
-  value       = aws_iam_role_policy.default[0].role
+  value = length(aws_iam_role_policy.default) > 0 ? aws_iam_role_policy.default[0].role : null
   description = "The name of the role associated with the policy."
 }

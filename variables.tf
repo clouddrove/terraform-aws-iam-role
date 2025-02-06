@@ -45,11 +45,6 @@ variable "assume_role_policy" {
   description = "Whether to create Iam role."
 }
 
-variable "managed_policy_arns" {
-  type        = list(any)
-  default     = []
-  description = "Set of exclusive IAM managed policy ARNs to attach to the IAM role"
-}
 variable "force_detach_policies" {
   type        = bool
   default     = false

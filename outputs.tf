@@ -16,11 +16,11 @@ output "name" {
 }
 
 output "policy" {
-  value       = aws_iam_role_policy.default[0].policy
+  value       = aws_iam_role_policy.default[*].policy
   description = "The policy document attached to the role."
 }
 
 output "role" {
-  value       = aws_iam_role_policy.default[0].role
+  value       = aws_iam_role_policy.default[*].role
   description = "The name of the role associated with the policy."
 }

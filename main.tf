@@ -46,8 +46,6 @@ resource "aws_iam_role_policy_attachment" "default" {
   role       = aws_iam_role.default[0].id
   policy_arn = var.policy_arn
 }
-Removed deprecated managed_policy_arns argument from aws_iam_role.
-Implemented aws_iam_role_policy_attachment for attaching managed policies
 
 ##----------------------------------------------------------------------------- 
 ## Below resource will attach managed policies arn to IAM role 

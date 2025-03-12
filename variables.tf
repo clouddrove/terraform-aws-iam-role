@@ -96,8 +96,8 @@ variable "policy_arn" {
   sensitive   = true
 }
 variable "managed_policy_arns" {
-  type = list(any)
-  default = []
+  type        = list(any)
+  default     = []
   description = "The ARN of the managed policy"
-  
+
 }

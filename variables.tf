@@ -95,3 +95,9 @@ variable "policy_arn" {
   description = "The ARN of the policy you want to apply."
   sensitive   = true
 }
+variable "managed_policy_arns" {
+  type = list(any)
+  default = []
+  description = "The ARN of the managed policy"
+  
+}

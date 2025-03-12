@@ -98,6 +98,6 @@ variable "policy_arn" {
 variable "managed_policy_arns" {
   type        = list(any)
   default     = []
-  description = "The ARN of the managed policy"
+  description = "Set of exclusive IAM managed policy ARNs to attach to the IAM role"
 
 }

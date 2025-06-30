@@ -20,7 +20,7 @@ resource "aws_iam_role" "default" {
   count                 = var.enabled ? 1 : 0
   name                  = module.labels.id
   assume_role_policy    = var.assume_role_policy
-  managed_policy_arns   = var.managed_policy_arns
+  # Removed invalid attribute aws_iam_role_policy_attachments_exclusive
   force_detach_policies = var.force_detach_policies
   path                  = var.path
   description           = var.description
@@ -28,6 +28,11 @@ resource "aws_iam_role" "default" {
   permissions_boundary  = var.permissions_boundary
   tags                  = module.labels.tags
 }
+
+resource "aws_iam_role_policy_attachments_exclusive" "default" {
+  role_name = aws_iam_role.default[0].id
+  policy_arns = var.managed_policy_arns
+} 
 
 ##----------------------------------------------------------------------------- 
 ## Below resource will deploy IAM policy and attach it to above created IAM role.   
@@ -38,7 +43,7 @@ resource "aws_iam_role_policy" "default" {
   role   = aws_iam_role.default[0].id
   policy = var.policy
 }
-
+  
 ##----------------------------------------------------------------------------- 
 ## Below resource will attach IAM policy to above created IAM role.  
 ##-----------------------------------------------------------------------------

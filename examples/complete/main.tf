@@ -11,12 +11,12 @@ locals {
 ## IAM role module call.   
 ##-----------------------------------------------------------------------------
 module "iam-role" {
-  source              = "./../../"
-  name                = local.name
-  environment         = local.environment
-  assume_role_policy  = data.aws_iam_policy_document.default.json
-  policy_enabled      = true
-  policy              = data.aws_iam_policy_document.iam-policy.json
+  source             = "./../../"
+  name               = local.name
+  environment        = local.environment
+  assume_role_policy = data.aws_iam_policy_document.default.json
+  policy_enabled     = true
+  policy             = data.aws_iam_policy_document.iam-policy.json
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
   ]

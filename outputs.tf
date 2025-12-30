@@ -1,7 +1,7 @@
 # Module      : Iam Role
 # Description : Terraform module to create Iam Role resource on AWS.
 output "arn" {
-  value       = aws_iam_role.default[*].arn
+  value       = join(",", aws_iam_role.default[*].arn)
   description = "The Amazon Resource Name (ARN) specifying the role."
 }
 
@@ -11,16 +11,16 @@ output "tags" {
 }
 
 output "name" {
-  value       = aws_iam_role.default[*].name
+  value       = join(",", aws_iam_role.default[*].name)
   description = "Name of specifying the role."
 }
 
 output "policy" {
-  value       = aws_iam_role_policy.default[*].policy
+  value       = join(",", aws_iam_role_policy.default[*].policy)
   description = "The policy document attached to the role."
 }
 
 output "role" {
-  value       = aws_iam_role_policy.default[*].role
+  value       = join(",", aws_iam_role_policy.default[*].role)
   description = "The name of the role associated with the policy."
 }

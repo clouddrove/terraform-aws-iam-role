@@ -22,5 +22,6 @@ module "aws_github_oidc_role" {
   oidc_provider_exists = true
   provider_url         = "https://token.actions.githubusercontent.com"
   policy_arns          = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+  oidc_thumbprint_list = [""]
 }
 

@@ -99,5 +99,10 @@ variable "managed_policy_arns" {
   type        = list(any)
   default     = []
   description = "Set of exclusive IAM managed policy ARNs to attach to the IAM role"
+}
 
+variable "oidc_thumbprint_list" {
+  description = "Custom thumbprint list for OIDC provider"
+  type        = list(string)
+  default     = []
 }

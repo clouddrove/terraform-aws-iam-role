@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.3] - 2026-01-09
+### :sparkles: New Features
+- [`da03174`](https://github.com/clouddrove/terraform-aws-iam-role/commit/da031748bda8ee6d3ba0ac21c98243edb7990f88) - Add pr-check.yml workflow *(PR [#47](https://github.com/clouddrove/terraform-aws-iam-role/pull/47) by [@tarun-cd](https://github.com/tarun-cd))*
+
+### :bug: Bug Fixes
+- [`f1531f8`](https://github.com/clouddrove/terraform-aws-iam-role/commit/f1531f8aeeebbaf6745156663e2b8ec07d7ca0e8) - Update Output from list to string *(PR [#50](https://github.com/clouddrove/terraform-aws-iam-role/pull/50) by [@sunnymor-cd](https://github.com/sunnymor-cd))*
+
+### :memo: Documentation Changes
+- [`4ebed94`](https://github.com/clouddrove/terraform-aws-iam-role/commit/4ebed942dc2b41f2ae0b5aef862b5966b7ba7b73) - update CHANGELOG.md for 1.3.2 *(commit by [@clouddrove-ci](https://github.com/clouddrove-ci))*
+
+
 ## [1.3.2] - 2024-11-27
 ### :sparkles: New Features
 - [`422be4a`](https://github.com/clouddrove/terraform-aws-iam-role/commit/422be4ae45e075ef7ed97754979331067b4f39ee) - updated example path and readme paramters *(commit by [@VishwajitNagulkar](https://github.com/VishwajitNagulkar))*
@@ -101,3 +112,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.3.0]: https://github.com/clouddrove/terraform-aws-iam-role/compare/1.0.1...1.3.0
 [1.3.1]: https://github.com/clouddrove/terraform-aws-iam-role/compare/1.3.0...1.3.1
 [1.3.2]: https://github.com/clouddrove/terraform-aws-iam-role/compare/1.3.1...1.3.2
+[1.3.3]: https://github.com/clouddrove/terraform-aws-iam-role/compare/1.3.2...1.3.3

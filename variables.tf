@@ -47,8 +47,8 @@ variable "assume_role_policy" {
 
 variable "force_detach_policies" {
   type        = bool
-  default     = false
-  description = "The policy that grants an entity permission to assume the role."
+  default     = true
+  description = "Whether to force detaching any policies the role has before destroying it."
 }
 
 variable "path" {

@@ -39,7 +39,7 @@ data "aws_iam_openid_connect_provider" "github" {
 resource "aws_iam_openid_connect_provider" "github" {
   count           = var.oidc_provider_exists ? 0 : 1
   client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = var.oidc_provider_exists ? [] : [data.tls_certificate.github.certificates[0].sha1_fingerprint]
+  thumbprint_list = length(var.oidc_thumbprint_list) > 0 ? var.oidc_thumbprint_list : (var.oidc_provider_exists ? [] : [data.tls_certificate.github.certificates[0].sha1_fingerprint])
   url             = var.provider_url
   tags            = module.labels.tags
 }

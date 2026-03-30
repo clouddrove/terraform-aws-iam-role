@@ -10,6 +10,7 @@ jobs:
     with:
       working_directory: './examples/complete/'
       provider: aws
+      enable_plan: true
     secrets:
       BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
   oidc-example:
@@ -18,6 +19,7 @@ jobs:
     with:
       working_directory: './examples/github-oidc/'
       provider: aws
+      enable_plan: true
     secrets:
       BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
 

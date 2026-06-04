@@ -6,7 +6,7 @@
 | description | The description of the role. | `string` | `""` | no |
 | enabled | Whether to create Iam role. | `bool` | `true` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
-| force\_detach\_policies | The policy that grants an entity permission to assume the role. | `bool` | `false` | no |
+| force\_detach\_policies | Whether to force detaching any policies the role has before destroying it. | `bool` | `true` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list(any)` | <pre>[<br>  "name",<br>  "environment"<br>]</pre> | no |
 | managed\_policy\_arns | Set of exclusive IAM managed policy ARNs to attach to the IAM role | `list(any)` | `[]` | no |
 | managedby | ManagedBy, eg 'CloudDrove' | `string` | `"hello@clouddrove.com"` | no |

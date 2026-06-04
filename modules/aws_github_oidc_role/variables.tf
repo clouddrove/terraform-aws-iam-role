@@ -64,3 +64,9 @@ variable "policy_arns" {
   description = "A list of policies/permissions to attach to the IAM role."
 }
 
+variable "oidc_thumbprint_list" {
+  description = "Custom thumbprint list for OIDC provider"
+  type        = list(string)
+  default     = []
+}
+

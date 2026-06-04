@@ -1,7 +1,7 @@
 
 
 ##-----------------------------------------------------------------------------
-## Labels module callled that will be used for naming and tags.   
+## Labels module callled that will be used for naming and tags.
 ##-----------------------------------------------------------------------------
 module "labels" {
   source  = "clouddrove/labels/aws"
@@ -14,15 +14,15 @@ module "labels" {
   label_order = var.label_order
 }
 
-##----------------------------------------------------------------------------- 
-## Data block to tls certificate.  
+##-----------------------------------------------------------------------------
+## Data block to tls certificate.
 ##-----------------------------------------------------------------------------
 
 data "tls_certificate" "github" {
   url = var.provider_url
 }
 
-##----------------------------------------------------------------------------- 
+##-----------------------------------------------------------------------------
 ## Data block for openid connect provider
 ##-----------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ data "aws_iam_openid_connect_provider" "github" {
 }
 
 ##-----------------------------------------------------------------------------
-## Include iam openid connect provider resource here   
+## Include iam openid connect provider resource here
 ##-----------------------------------------------------------------------------
 
 

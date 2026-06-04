@@ -18,6 +18,7 @@
 | policy\_arn | The ARN of the policy you want to apply. | `string` | `""` | no |
 | policy\_enabled | Whether to Attach Iam policy with role. | `bool` | `false` | no |
 | repository | https://github.com/clouddrove/terraform-aws-iam-role | `string` | `""` | no |
+| tags | Additional tags to apply to all resources managed by the module (merged with module.labels.tags via extra\_tags). | `map(string)` | `{}` | no |
 
 ## Outputs
 

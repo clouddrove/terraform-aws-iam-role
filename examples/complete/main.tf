@@ -8,7 +8,7 @@ locals {
 }
 
 ##-----------------------------------------------------------------------------
-## IAM role module call.
+## IAM role module call — name derived from labels (name + environment).
 ##-----------------------------------------------------------------------------
 module "iam-role" {
   source             = "./../../"
@@ -46,9 +46,9 @@ data "aws_iam_policy_document" "iam-policy" {
       "ssmmessages:CreateControlChannel",
       "ssmmessages:CreateDataChannel",
       "ssmmessages:OpenControlChannel",
-    "ssmmessages:OpenDataChannel"]
+      "ssmmessages:OpenDataChannel",
+    ]
     effect    = "Allow"
     resources = ["*"]
   }
 }
-

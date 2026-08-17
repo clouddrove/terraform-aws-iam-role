@@ -3,7 +3,8 @@
 
 variable "name" {
   type        = string
-  description = "Name for tags"
+  default     = ""
+  description = "Name for tags. Also used to derive the IAM role name via the labels module when `role_name` is not set."
 }
 
 variable "repository" {
@@ -50,7 +51,8 @@ variable "oidc_github_repos" {
 
 variable "role_name" {
   type        = string
-  description = "Name of the AWS IAM Role to create"
+  default     = ""
+  description = "Explicit name for the IAM role. If not set, falls back to the label-derived name from `name` (via the labels module)."
 }
 
 variable "oidc_provider_exists" {

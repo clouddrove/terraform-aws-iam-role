@@ -1,4 +1,12 @@
 ##-----------------------------------------------------------------------------
+## Resolve role name: explicit role_name wins, otherwise fall back to the
+## labels-module id derived from `name`.
+##-----------------------------------------------------------------------------
+locals {
+  role_name = var.role_name != "" ? var.role_name : module.labels.id
+}
+
+##-----------------------------------------------------------------------------
 ## Labels module callled that will be used for naming and tags.
 ##-----------------------------------------------------------------------------
 module "labels" {
@@ -19,7 +27,7 @@ module "labels" {
 ##-----------------------------------------------------------------------------
 resource "aws_iam_role" "default" {
   count                 = var.enabled ? 1 : 0
-  name                  = module.labels.id
+  name                  = local.role_name
   assume_role_policy    = coalesce(var.assume_role_policy, data.aws_iam_policy_document.default_assume_role[0].json)
   force_detach_policies = var.force_detach_policies
   path                  = var.path

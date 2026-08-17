@@ -6,6 +6,12 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
+variable "role_name" {
+  type        = string
+  default     = ""
+  description = "Explicit name for the IAM role. If not set, falls back to the label-derived name from `name` (via the labels module)."
+}
+
 variable "repository" {
   type        = string
   default     = ""

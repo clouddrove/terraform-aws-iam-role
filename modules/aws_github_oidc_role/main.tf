@@ -1,4 +1,10 @@
-
+##-----------------------------------------------------------------------------
+## Resolve role name: explicit role_name wins, otherwise fall back to the
+## labels-module id derived from `name`.
+##-----------------------------------------------------------------------------
+locals {
+  role_name = var.role_name != "" ? var.role_name : module.labels.id
+}
 
 ##-----------------------------------------------------------------------------
 ## Labels module callled that will be used for naming and tags.
@@ -19,7 +25,8 @@ module "labels" {
 ##-----------------------------------------------------------------------------
 
 data "tls_certificate" "github" {
-  url = var.provider_url
+  count = var.oidc_provider_exists ? 0 : 1
+  url   = var.provider_url
 }
 
 ##-----------------------------------------------------------------------------
@@ -39,7 +46,7 @@ data "aws_iam_openid_connect_provider" "github" {
 resource "aws_iam_openid_connect_provider" "github" {
   count           = var.oidc_provider_exists ? 0 : 1
   client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = length(var.oidc_thumbprint_list) > 0 ? var.oidc_thumbprint_list : (var.oidc_provider_exists ? [] : [data.tls_certificate.github.certificates[0].sha1_fingerprint])
+  thumbprint_list = length(var.oidc_thumbprint_list) > 0 ? var.oidc_thumbprint_list : [data.tls_certificate.github[0].certificates[0].sha1_fingerprint]
   url             = var.provider_url
   tags            = module.labels.tags
 }
@@ -49,7 +56,7 @@ resource "aws_iam_openid_connect_provider" "github" {
 ##-----------------------------------------------------------------------------
 
 resource "aws_iam_role" "github" {
-  name = var.role_name
+  name = local.role_name
   tags = module.labels.tags
   assume_role_policy = var.custom_assume_role_policy != "" ? var.custom_assume_role_policy : jsonencode({
     Version = "2012-10-17",

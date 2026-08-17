@@ -50,15 +50,18 @@ Before using this configuration, make sure you have the following prerequisites:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| oidc_provider_exists | Mention oidc provider exist or not in true or false. | `bool` | false | yes |
-| role_name  | Role name . | `string` | `GitHub-Deploy-Role` | yes |
-| oidc_github_repos   | GitHub repository to set IAM Role conditions . | `list(string)` | `""` | yes |
-| provider_url | URL for the OIDC provider. | `string` | `https://token.actions.githubusercontent.com` | yes |
-| environment | Environment for tag, (e.g. `prod`, `dev`, `staging`). | `string` | `""` | yes |
-| managedby | ManagedBy for tag, eg 'CloudDrove' | `string` | `"hello@clouddrove.com"` | yes |
-| name | Name for tag  (e.g. `app` or `cluster`). | `string` | `""` | yes |
-| repository | repsoitory name for tag| `string` | `""` | yes |
-| policy_arns | A list of ARNs of policies to attach to the IAM role| `list(string)` | `["arn:aws:iam::aws:policy/AdministratorAccess"]` | yes |
+| name | Name for tags. Also used to derive the IAM role name via the labels module when `role_name` is not set. | `string` | `""` | no |
+| role_name | Explicit name for the IAM role. If not set, falls back to the label-derived name from `name` (via the labels module). | `string` | `""` | no |
+| environment | Environment name for tags (e.g. `prod`, `dev`, `staging`). | `string` | n/a | yes |
+| repository | Repository name for tags. | `string` | `"https://github.com/clouddrove/terraform-aws-iam-role.git"` | no |
+| managedby | Managed by for tags. | `string` | `"hello@clouddrove.com"` | no |
+| label_order | Label order, e.g. `name`, `environment`. | `list(any)` | `["name", "environment"]` | no |
+| provider_url | The URL of the identity provider for the OIDC. | `string` | n/a | yes |
+| oidc_github_repos | GitHub repository names for access (e.g. `["org/repo"]`). | `list(string)` | n/a | yes |
+| oidc_provider_exists | Set to `true` if the GitHub OIDC provider already exists in the account; `false` to create it. | `bool` | `true` | no |
+| oidc_thumbprint_list | Custom thumbprint list for the OIDC provider. If empty, the thumbprint is fetched automatically via TLS. | `list(string)` | `[]` | no |
+| policy_arns | A list of IAM policy ARNs to attach to the role. | `list(string)` | n/a | yes |
+| custom_assume_role_policy | Custom JSON trust policy for the IAM role. When set, overrides the module-generated GitHub OIDC trust policy entirely. Use this for advanced conditions such as GitHub's July 2026 immutable sub-claim format. | `string` | `""` | no |
 
 ## Cleanup
 1. To destroy the created resources, run:

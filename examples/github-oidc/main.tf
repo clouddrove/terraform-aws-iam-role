@@ -63,7 +63,7 @@ module "aws_github_oidc_role_custom_policy" {
 
           "ForAnyValue:StringLike" = {
             "token.actions.githubusercontent.com:sub" = [
-              "repo:clouddrove@123456/terraform-aws-iam-role@78953:ref:refs/heads/main"
+              "repo:clouddrove@<org_id>/terraform-aws-iam-role@<repo_id>:ref:refs/heads/main"
             ]
           }
         }

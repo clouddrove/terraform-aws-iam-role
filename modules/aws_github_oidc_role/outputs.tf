@@ -1,6 +1,6 @@
 output "arn" {
-  description = "The ARN assigned by AWS for this provider"
-  value       = aws_iam_role.github[*].arn
+  description = "The ARN of the IAM role"
+  value       = aws_iam_role.github.arn
 }
 
 output "tags" {

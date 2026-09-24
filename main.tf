@@ -14,11 +14,22 @@ module "labels" {
   extra_tags  = var.tags
 }
 
+locals {
+  # user supplied OIDC settings -> this module call is meant for GitHub OIDC
+  oidc_configured = var.provider_url != ""
+
+  # GitHub OIDC role + provider + policies
+  create_oidc = var.enabled && var.oidc_enabled
+
+  # normal IAM role: only when this is NOT an OIDC call
+  create_role = var.enabled && !var.oidc_enabled && !local.oidc_configured
+}
+
 ##-----------------------------------------------------------------------------
 ## Below resource will deploy IAM role in AWS environment.
 ##-----------------------------------------------------------------------------
 resource "aws_iam_role" "default" {
-  count                 = var.enabled && !var.oidc_enabled ? 1 : 0
+  count                 = local.create_role ? 1 : 0
   name                  = module.labels.id
   assume_role_policy    = coalesce(var.assume_role_policy, data.aws_iam_policy_document.default_assume_role[0].json)
   force_detach_policies = var.force_detach_policies
@@ -34,7 +45,7 @@ resource "aws_iam_role" "default" {
 ##-----------------------------------------------------------------------------
 module "github_oidc_role" {
   source = "./modules/aws_github_oidc_role"
-  count  = var.oidc_enabled ? 1 : 0
+  count  = local.create_oidc ? 1 : 0
 
   name                      = var.name
   environment               = var.environment
@@ -52,7 +63,7 @@ module "github_oidc_role" {
 ## Below resource will deploy IAM policy and attach it to above created IAM role.
 ##-----------------------------------------------------------------------------
 resource "aws_iam_role_policy" "default" {
-  count  = var.enabled && !var.oidc_enabled && var.policy_enabled && var.policy_arn == "" ? 1 : 0
+  count  = local.create_role && var.policy_enabled && var.policy_arn == "" ? 1 : 0
   name   = format("%s-policy", module.labels.id)
   role   = aws_iam_role.default[0].id
   policy = var.policy
@@ -62,7 +73,7 @@ resource "aws_iam_role_policy" "default" {
 ## Below resource will attach IAM policy to above created IAM role.
 ##-----------------------------------------------------------------------------
 resource "aws_iam_role_policy_attachment" "default" {
-  count      = var.enabled && !var.oidc_enabled && var.policy_enabled && var.policy_arn != "" ? 1 : 0
+  count      = local.create_role && var.policy_enabled && var.policy_arn != "" ? 1 : 0
   role       = aws_iam_role.default[0].id
   policy_arn = var.policy_arn
 }
@@ -71,7 +82,7 @@ resource "aws_iam_role_policy_attachment" "default" {
 ## Below resource will attach managed policies arn to IAM role
 ##-----------------------------------------------------------------------------
 resource "aws_iam_role_policy_attachment" "managed_policy" {
-  for_each   = var.enabled && !var.oidc_enabled ? toset(var.managed_policy_arns) : []
+  for_each   = local.create_role ? toset(var.managed_policy_arns) : []
   role       = aws_iam_role.default[0].id
   policy_arn = each.value
 }

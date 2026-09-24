@@ -5,16 +5,17 @@ provider "aws" {
 locals {
   name        = "clouddrove"
   environment = "test"
+  label_order = ["environment", "name"]
 }
 
 ##-----------------------------------------------------------------------------
-## IAM role module call — name derived from labels (name + environment).
+## IAM role module call.
 ##-----------------------------------------------------------------------------
 module "iam-role" {
   source             = "./../../"
   name               = local.name
   environment        = local.environment
-  label_order        = ["environment", "name"]
+  label_order        = local.label_order
   assume_role_policy = data.aws_iam_policy_document.default.json
   policy_enabled     = true
   policy             = data.aws_iam_policy_document.iam-policy.json

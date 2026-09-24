@@ -1,7 +1,7 @@
 # Module      : Iam Role
 # Description : Terraform module to create Iam Role resource on AWS.
 output "arn" {
-  value = var.oidc_enabled ? try(module.github_oidc_role[0].role_arn, "") : try(aws_iam_role.default[0].arn, "")
+  value = local.create_oidc ? try(module.github_oidc_role[0].arn, "") : try(aws_iam_role.default[0].arn, "")
 }
 
 output "tags" {

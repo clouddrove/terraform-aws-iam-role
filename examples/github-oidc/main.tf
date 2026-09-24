@@ -18,7 +18,7 @@ locals {
 module "aws_github_oidc_role" {
   source = "./../../"
 
-  oidc_enabled         = false
+  oidc_enabled         = true
   environment          = local.environment
   name                 = local.name
   label_order          = local.label_order
@@ -37,7 +37,7 @@ module "aws_github_oidc_role" {
 module "aws_github_oidc_role_custom_policy" {
   source = "./../../"
 
-  oidc_enabled         = false
+  oidc_enabled         = true
   name                 = "github-oidc-terraform-role-immutable"
   environment          = local.environment
   label_order          = local.label_order

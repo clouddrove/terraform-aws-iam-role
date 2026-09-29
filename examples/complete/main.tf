@@ -3,8 +3,9 @@ provider "aws" {
 }
 
 locals {
-  name        = "role-test"
+  name        = "clouddrove"
   environment = "test"
+  label_order = ["environment", "name"]
 }
 
 ##-----------------------------------------------------------------------------
@@ -14,6 +15,7 @@ module "iam-role" {
   source             = "./../../"
   name               = local.name
   environment        = local.environment
+  label_order        = local.label_order
   assume_role_policy = data.aws_iam_policy_document.default.json
   policy_enabled     = true
   policy             = data.aws_iam_policy_document.iam-policy.json
@@ -46,9 +48,9 @@ data "aws_iam_policy_document" "iam-policy" {
       "ssmmessages:CreateControlChannel",
       "ssmmessages:CreateDataChannel",
       "ssmmessages:OpenControlChannel",
-    "ssmmessages:OpenDataChannel"]
+      "ssmmessages:OpenDataChannel",
+    ]
     effect    = "Allow"
     resources = ["*"]
   }
 }
-

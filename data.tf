@@ -3,7 +3,7 @@ data "aws_caller_identity" "current" {
 }
 
 data "aws_iam_policy_document" "default_assume_role" {
-  count = var.enabled ? 1 : 0
+  count = local.create_role ? 1 : 0
   statement {
     effect = "Allow"
 

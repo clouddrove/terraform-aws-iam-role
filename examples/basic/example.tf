@@ -4,6 +4,7 @@ provider "aws" {
 
 module "iam_role" {
   source      = "../../"
-  name        = "iam-role"
+  name        = "clouddrove"
   environment = "test"
+  label_order = ["environment", "name"]
 }

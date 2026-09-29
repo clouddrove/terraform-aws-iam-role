@@ -106,3 +106,50 @@ variable "managed_policy_arns" {
   default     = []
   description = "Set of exclusive IAM managed policy ARNs to attach to the IAM role"
 }
+
+##-----------------------------------------------------------------------------
+## GitHub OIDC role variables (only used when oidc_enabled = true)
+##-----------------------------------------------------------------------------
+
+variable "oidc_enabled" {
+  type        = bool
+  default     = false
+  description = "When true, creates a GitHub OIDC IAM role via the aws_github_oidc_role sub-module instead of the generic IAM role."
+}
+
+variable "provider_url" {
+  type        = string
+  default     = ""
+  description = "The URL of the GitHub OIDC identity provider."
+}
+
+variable "oidc_provider_exists" {
+  type        = bool
+  default     = true
+  description = "Set to true if the GitHub OIDC provider already exists in the account."
+}
+
+variable "oidc_github_repos" {
+  type        = list(string)
+  default     = []
+  description = "GitHub repository names in org/repo format allowed to assume the OIDC role. The first entry is also used as the repository tag on the IAM role."
+}
+
+variable "policy_arns" {
+  type        = list(string)
+  default     = []
+  description = "List of IAM managed policy ARNs to attach to the OIDC role."
+}
+
+variable "oidc_thumbprint_list" {
+  type        = list(string)
+  default     = []
+  description = "Custom thumbprint list for the OIDC provider (leave empty to auto-fetch)."
+}
+
+variable "custom_assume_role_policy" {
+  type        = string
+  default     = ""
+  description = "Custom JSON assume-role policy for the OIDC role. Overrides the auto-generated policy."
+  sensitive   = true
+}

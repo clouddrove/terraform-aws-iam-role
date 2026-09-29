@@ -11,7 +11,7 @@ on:
       - '*.tf'
 jobs:
   complete-example:
-    if: github.actor != 'dependabot[bot]'
+    if: github.actor != 'dependabot[bot]' && github.event.pull_request.head.repo.fork != true
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
     with:
       working_directory: './examples/complete/'
@@ -21,7 +21,7 @@ jobs:
     secrets:
       BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
   oidc-example:
-    if: github.actor != 'dependabot[bot]'
+    if: github.actor != 'dependabot[bot]' && github.event.pull_request.head.repo.fork != true
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@v2
     with:
       working_directory: './examples/github-oidc/'
@@ -30,4 +30,3 @@ jobs:
       show_plan: false
     secrets:
       BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
-

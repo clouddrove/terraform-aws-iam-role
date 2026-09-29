@@ -1,8 +1,7 @@
 # Module      : Iam Role
 # Description : Terraform module to create Iam Role resource on AWS.
 output "arn" {
-  value       = join(",", aws_iam_role.default[*].arn)
-  description = "The Amazon Resource Name (ARN) specifying the role."
+  value = local.create_oidc ? try(module.github_oidc_role[0].arn, "") : try(aws_iam_role.default[0].arn, "")
 }
 
 output "tags" {
@@ -23,4 +22,18 @@ output "policy" {
 output "role" {
   value       = join(",", aws_iam_role_policy.default[*].role)
   description = "The name of the role associated with the policy."
+}
+
+##-----------------------------------------------------------------------------
+## GitHub OIDC role outputs (populated only when oidc_enabled = true)
+##-----------------------------------------------------------------------------
+
+output "oidc_role_arn" {
+  value       = length(module.github_oidc_role) > 0 ? module.github_oidc_role[0].arn : ""
+  description = "The ARN of the GitHub OIDC IAM role."
+}
+
+output "oidc_role_tags" {
+  value       = length(module.github_oidc_role) > 0 ? module.github_oidc_role[0].tags : {}
+  description = "Tags applied to the GitHub OIDC IAM role."
 }
